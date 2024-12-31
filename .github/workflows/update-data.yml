@@ -23,9 +23,10 @@ jobs:
         pip install firebase-admin pandas
 
     - name: Run update script
-  env:
-    FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
-  run: |
-    printf "%s" "$FIREBASE_CREDENTIALS" > firebase_credentials.json
-    python update_data.py firebase_credentials.json
+      env:
+        FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+      run: |
+        printf "%s" "$FIREBASE_CREDENTIALS" > firebase_credentials.json
+        python update_data.py firebase_credentials.json
+
 
