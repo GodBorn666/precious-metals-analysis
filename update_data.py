@@ -10,7 +10,7 @@ cred_file = sys.argv[1]
 # Ініціалізація Firebase
 cred = credentials.Certificate(cred_file)
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://metals-f6eb0-default-rtdb.europe-west1.firebasedatabase.app/'
+    'databaseURL': 'https://precious-metals-34c70-default-rtdb.firebaseio.com/'
 })
 
 # Приклад даних для завантаження
