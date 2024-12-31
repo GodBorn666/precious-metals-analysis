@@ -1,0 +1,30 @@
+name: Update Firebase Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Запуск щодня о 6:00
+  workflow_dispatch: # Можливість запуску вручну
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install firebase-admin pandas
+
+    - name: Run update script
+      env:
+        FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+      run: |
+        echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json
+        python update_data.py firebase_credentials.json
